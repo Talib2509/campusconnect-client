@@ -8,6 +8,17 @@ import LoginPage from "../features/auth/pages/LoginPage";
 import RegisterPage from "../features/auth/pages/RegisterPage";
 import DashboardPage from "../features/dashboard/pages/DashboardPage";
 
+import AnnouncementsPage
+from "../features/announcements/pages/AnnouncementsPage";
+
+import CreateAnnouncementPage
+from "../features/announcements/pages/CreateAnnouncementPage";
+
+import AdminAnnouncementsPage
+from "../features/admin/pages/AdminAnnouncementsPage";
+
+import { RoleGuard } from "../components/guards/RoleGuard";
+
 export const router = createBrowserRouter([
   {
     element: <AuthLayout />,
@@ -22,11 +33,11 @@ export const router = createBrowserRouter([
       },
     ],
   },
-
+  
   {
     element: (
       <ProtectedRoute>
-        <MainLayout />
+      <MainLayout />
       </ProtectedRoute>
     ),
     children: [
@@ -34,11 +45,30 @@ export const router = createBrowserRouter([
         path: "/",
         element: <DashboardPage />,
       },
+      {
+        path: "/announcements",
+        element: <AnnouncementsPage />,
+      },
+      
+      {
+        path: "/announcements/create",
+        element: <CreateAnnouncementPage />,
+      },
+      {
+        path: "/admin/announcements",
+        element: (
+          <RoleGuard>
+          <AdminAnnouncementsPage />
+          </RoleGuard>
+        ),
+      }
     ],
+    
   },
-
+  
   {
     path: "*",
     element: <Navigate to="/login" replace />,
   },
+  
 ]);
