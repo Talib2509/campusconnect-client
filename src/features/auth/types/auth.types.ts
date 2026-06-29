@@ -17,4 +17,22 @@ export interface LoginResponse {
   token?: string;
   refreshToken?: string;
   user?: User;
+  message?: string;
+  success?: boolean;
+  succeeded?: boolean;
+}
+
+export interface RefreshTokenRequest {
+  refreshToken: string;
+}
+
+export interface ForgotPasswordRequest {
+  email: string;
+}
+
+export interface ResetPasswordRequest {
+  email: string;
+  token: string;
+  newPassword: string;
+  confirmPassword: string;
 }

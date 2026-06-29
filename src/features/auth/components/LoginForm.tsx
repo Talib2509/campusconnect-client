@@ -3,6 +3,7 @@ import type { FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authService } from "../services/authService";
 import { TokenManager } from "../../../utils/tokenManager";
+import { jwtDecode } from "jwt-decode";
 
 export function LoginForm() {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ export function LoginForm() {
     }
 
     TokenManager.setAccessToken(accessToken);
+console.log(jwtDecode(accessToken));
 
     if (result.refreshToken) {
       TokenManager.setRefreshToken(result.refreshToken);
@@ -78,13 +80,17 @@ export function LoginForm() {
         required
       />
 
-      <button type="submit" disabled={loading}>
-        {loading ? "Yüklənir..." : "Daxil ol"}
-      </button>
+     <button type="submit" disabled={loading}>
+  {loading ? "Yüklənir..." : "Daxil ol"}
+</button>
 
-      <p className="auth-link">
-        Hesabın yoxdur? <Link to="/register">Qeydiyyatdan keç</Link>
-      </p>
+<p className="auth-link">
+  <Link to="/forgot-password">Şifrəni unutmusunuz?</Link>
+</p>
+
+<p className="auth-link">
+  Hesabın yoxdur? <Link to="/register">Qeydiyyatdan keç</Link>
+</p>
     </form>
   );
 }
