@@ -1,7 +1,11 @@
-export interface ApiResponse<T> {
-  success: boolean;
+export interface ApiResponse<T = any> {
+  succeeded: boolean;
+  success?: boolean;
   message?: string;
-  data: T;
+  data?: T;
+  token?: string;
+  accessToken?: string;
+  refreshToken?: string;
   errors?: ApiError[];
 }
 

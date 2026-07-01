@@ -1,4 +1,9 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #2563eb;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -137,13 +142,34 @@ a {
   justify-content: space-between;
 }
 
-.header button {
+.header > div > button,
+.header .logout-btn {
   padding: 8px 14px;
   border: none;
   background: #ef4444;
   color: white;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.btn-primary {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.btn-primary:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
 }
 
 .page-content {
